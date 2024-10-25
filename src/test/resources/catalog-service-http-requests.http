@@ -1,0 +1,31 @@
+### post a book with correct data.
+POST {{baseUrl}}/books
+Content-Type: application/json
+
+{
+  "author": "Jack",
+  "isbn": "00001",
+  "price": 12.03,
+  "title": "Learning Cloud Native Development"
+}
+
+###
+
+### post a book with incorrect data
+POST {{baseUrl}}/books
+Content-Type: application/json
+
+{
+  "author": "Jack",
+  "isbn": "",
+  "price": 12.03,
+  "title": "Learning Cloud Native Development"
+}
+
+
+### get the full list of books
+GET {{baseUrl}}/books
+Accept: application/json
+
+
+###
