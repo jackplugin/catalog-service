@@ -1,6 +1,7 @@
 package org.jack.cloudnative.catalogservice.web;
 
 import jakarta.validation.Valid;
+import org.jack.cloudnative.catalogservice.config.CatalogServiceProperties;
 import org.jack.cloudnative.catalogservice.domain.Book;
 import org.jack.cloudnative.catalogservice.domain.BookService;
 import org.springframework.http.HttpStatus;
@@ -8,16 +9,22 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("books")
 public class BookController {
 
     private final BookService bookService;
+    private final CatalogServiceProperties catalogServiceProperties;
 
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, CatalogServiceProperties catalogServiceProperties) {
         this.bookService = bookService;
+        this.catalogServiceProperties = catalogServiceProperties;
     }
 
-    @GetMapping
+    @GetMapping("/")
+    public String hello() {
+        return catalogServiceProperties.getGreeting();
+    }
+
+    @GetMapping("/books")
     public Iterable<Book> get() {
         var content = """
                 {
@@ -30,7 +37,7 @@ public class BookController {
         return bookService.findAll();
     }
 
-    @PostMapping
+    @PostMapping("books")
     @ResponseStatus(HttpStatus.CREATED)
     public Book post(@Valid @RequestBody Book book) {
         return bookService.addBook(book);

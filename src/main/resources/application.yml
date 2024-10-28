@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: catalog-service
+
+catalogservice:
+  greeting: hello message from application.yml
+  testdata:
+    enabled: false
+
