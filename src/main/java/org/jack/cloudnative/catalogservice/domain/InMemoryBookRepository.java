@@ -3,6 +3,7 @@ package org.jack.cloudnative.catalogservice.domain;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
@@ -12,6 +13,12 @@ public class InMemoryBookRepository implements IBookRepository{
     @Override
     public Iterable<Book> findAll() {
         return books.values();
+    }
+
+    @Override
+    public Optional<Book> findByIsbn(String isbn) {
+        var book = books.get(isbn);
+        return book != null ? Optional.of(book) : Optional.empty();
     }
 
     @Override

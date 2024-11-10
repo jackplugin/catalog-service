@@ -16,6 +16,10 @@ public class BookService {
     }
 
     public Book addBook(Book book) {
+        var existingBook = this.inMemoryBookRepository.findByIsbn(book.isbn());
+        if (existingBook.isPresent()){
+            throw new BookAlreadyExistsException(book.isbn());
+        }
         return inMemoryBookRepository.addBook(book);
     }
 }
