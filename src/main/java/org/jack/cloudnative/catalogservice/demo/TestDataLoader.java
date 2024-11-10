@@ -22,7 +22,7 @@ public class TestDataLoader {
     public void loadBookTestData() {
         logger.info("Detected that loading test data is required.");
         logger.info("Loading test data is started.");
-        bookRepository.addBook(new Book("1212", "Jack Book", "Jack", 12.03));
+        bookRepository.addBook(new Book("1234567890", "Jack Book", "Jack", 12.03));
         logger.info("Loading test data is done.");
     }
 }
