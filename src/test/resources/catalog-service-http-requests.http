@@ -17,7 +17,7 @@ Content-Type: application/json
 
 {
   "author": "Jack",
-  "isbn": "",
+  "isbn": "1212",
   "price": 12.03,
   "title": "Learning Cloud Native Development"
 }
